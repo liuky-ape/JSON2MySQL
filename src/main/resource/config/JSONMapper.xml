@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.JSONDao">
+    <insert id ="inputBatchMySQL" parameterType="java.util.List" >
+               insert into `data`.wifi_data_muying(
+                    device_id,data_mac,data_rssi,data_rssi1,data_rssi2,
+                    data_tmc,data_router,data_range,mmac,rate,time,lat,
+                    lon,data_ts,data_ds,data_rssi3,data_tc)
+                Values
+                 <foreach collection ="list" item="beans.ResultData" index= "index" separator =",">
+                   (
+                     #{beans.ResultData.id}, #{beans.ResultData.data_mac},#{beans.ResultData.data_rssi}, #{beans.ResultData.data_rssi1},
+                     #{beans.ResultData.data_rssi2},#{beans.ResultData.data_tmc},#{beans.ResultData.data_router},#{beans.ResultData.data_range},#{beans.ResultData.mmac},
+                     #{beans.ResultData.rate},#{beans.ResultData.time},#{beans.ResultData.lat},#{beans.ResultData.lon},#{beans.ResultData.data_ts},
+                     #{beans.ResultData.data_ds},#{beans.ResultData.data_rssi3},#{beans.ResultData.data_tc}
+                     )
+                 </foreach >
+          </insert >
+</mapper>
